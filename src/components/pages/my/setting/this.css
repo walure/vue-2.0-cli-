@@ -1,0 +1,6 @@
+
+
+.setting{}
+.setting .change_password{padding-left: 3%; border-bottom:1px solid #eee; line-height: 15vw;    font-size: 4.6vw;}
+.setting .exit{    background: #B96565;line-height: 15vw;color: #fff;text-align: center;position: fixed; bottom: 0; width: 100%}
+.setting .exit:active{background: #a75858;}

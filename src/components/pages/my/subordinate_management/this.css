@@ -1,0 +1,9 @@
+.subordinate_management{}
+.subordinate_management .search_box{line-height: 9vw;width: 96%;margin:5vw auto}
+.subordinate_management input{flex: 3; border: 1px solid #D9D9D9;height: 8vw;outline: none; padding: 0 1vw}
+.subordinate_management .search_box div{flex: 1; text-align: center;margin-left: 1vw;color: #fff; background: #f78181;border-radius: 1vw;}
+.subordinate_management .search_box .search:active{background: #da6d6d;}
+.subordinate_management .search_box .add{ background: #669bd8;}
+.subordinate_management .search_box .add:active{ background: #5e88bf;}
+
+

@@ -1,0 +1,9 @@
+.agentManage_index{}
+.agentManage_index ul{}
+.agentManage_index ul:nth-child(1) li:nth-child(1){padding-top: 5vw}
+.agentManage_index ul li{height: auto; overflow: hidden;padding: 3vw 6vw ;width: 84%; margin: auto; border-bottom:1px solid #E9E9E9; background: #fff}
+.agentManage_index ul li:last-child{ }
+.agentManage_index ul .fl{    color: #222;}
+.agentManage_index ul .fr{text-align: right;    color: #898989;font-size: 4vw}
+.agentManage_index ul  .ico_right{font-size: 5vw}
+.agentManage_index ul .btn:active{background: #f8f8f8;}

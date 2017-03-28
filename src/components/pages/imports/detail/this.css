@@ -1,0 +1,34 @@
+.detail{padding:3vw 0 15vw;}
+.detail .box{background: #fff; height: auto; overflow: hidden; word-break: break-all;padding: 3vw}
+.detail .box .row{width: 100%; clear: both; padding-top: 2vw}
+
+.detail  .list_box{padding-bottom:3vw;background: #fff;margin-bottom:5vw;}
+.detail .list{ width: 96%; margin: auto ; height: auto; overflow: hidden;border-left:1px solid #ccc; border-top:1px solid #ccc; border-radius: 3px; background: #fff;}
+.detail .list dl{width: 100%;flex-direction: row; display: flex; text-align: center;background: none;}
+.detail .list  dl:nth-child(1){flex: 1; background: #0ABA7A; color: #fff}
+.detail .list  dd{flex: 1;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; padding: 2vw;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.order_info{margin-top: 5vw}
+.order_info div{height: auto;overflow: hidden;line-height: 8vw;border-bottom: 1px solid #ccc; }
+.order_info div:last-child{border-bottom: none}
+
+.finance_purchase_detail .remark{margin-top: 5vw}
+.remark .border{width: 93%;padding:2vw;border:1px solid #ccc; margin-top: 2vw}
+
+.detail .check_btn_group{width: 100%;line-height:15vw; color: #fff; text-align: center; position: fixed; bottom: 0;}
+.check_btn_group span{flex: 1;background:#B96565}
+.check_btn_group span:active{background: #DD6A6A}
+.check_btn_group span:nth-child(1){background:#0ABA7A;}
+.check_btn_group span:nth-child(1):active{background: #4F7FB6}
+
+
+.sub_table{padding:0 3vw;}
+.sub_table .table{border-left:1px solid #eee;border-right:1px solid #eee;}
+.sub_table .table th:nth-child(2n){background:#0DAF74;}
+.dl-horizontal dd.price_all{margin:2vw 0 0 0;padding-top:2vw;border-top:1px solid #eee;color:#f00;}

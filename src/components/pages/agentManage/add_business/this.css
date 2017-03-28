@@ -1,0 +1,16 @@
+.add_business{}
+.add_business dl{margin-bottom: 5vw;background: #fff;padding: 2vw 0 4vw;}
+.add_business dl dd{display: flex;line-height: 9vw; margin-top: 2vw}
+.add_business dl dd div{flex: 1;}
+.add_business dl dd div:nth-child(1){flex: 2;text-align: right;    color: #666;}
+.add_business dl dd div:nth-child(2){flex: 3}
+.add_business dl dd input{border: 1px solid #e3e3e3;height: 8vw;outline: none; padding:0 1vw}
+.add_business dl dd select{border: 1px solid #e3e3e3;height: 8vw;margin-right: 1vw}
+.add_business dl dt{text-align: center;    color: #E54242;}
+.add_business .btn{    line-height: 15vw;
+    text-align: center;
+    background: #669bd8;
+    color: #fff;    position: fixed;
+    width: 100%;
+    bottom: 0;}
+.add_business .btn:active{   background: #6291cb;}

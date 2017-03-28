@@ -1,0 +1,12 @@
+.index_con{position:absolute;top:0;left:0;right:0;bottom:0;}
+.index_header{padding:5vw 4vw;}
+.index_main{-webkit-flex:1;flex:1;background:#fff;margin-top:5vw;}
+.index_main_row{-webkit-flex:1;flex:1;}
+.index_main_cell{-webkit-flex:1;flex:1;justify-content:center;align-items: center;}
+.index_main_cell>div{width:30vw;height:30vw;border-radius:100vw;text-align:center;-webkit-flex-flow:column;flex-direction: column;justify-content: center;margin:0 auto;}
+.index_main_cell>p{text-align:center;margin-top:2vw;color:#666;}
+.index_main_cell i{color:#fff;font-size:12vw;}
+.index_imports{background:#f78181;}
+.index_order{background:#cfa972;}
+.index_imports_add{background:#669bd8;}
+.index_my{background:#5ecfb8;}

@@ -1,0 +1,17 @@
+.finance_purchase .select_box {padding:5vw 0;flex-direction: row;height: auto; overflow: hidden; /*background: #fff;*/}
+.select_box div{width: 40vw;margin-left:3vw; line-height: 10vw }
+.select_box div select{width: 100%;height: 10vw;text-align: center;    border: 1px solid #e3e3e3;color:#666;background:#efefef;}
+.select_box .btn{width: 25vw; margin-right: 5vw; text-align: center; background:#0FAB72; color: #fff; border-radius: 1vw;margin-left: 3vw;line-height: 10vw}
+/*.select_box .btn:active{background: #507CB0}*/
+
+/*.finance_purchase  .list{ width: 90%; margin:5vw auto 0; height: auto; overflow: hidden;border-left:1px solid #ccc; border-top:1px solid #ccc; border-radius: 3px; background: #fff; }
+.finance_purchase .list dl{width: 100%;flex-direction: row; display: flex; text-align: center;background: none;}
+.finance_purchase .list  dl:nth-child(1){flex: 1; background: #49B146; color: #fff}
+.finance_purchase .list  dd{flex: 1;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; padding: 2vw;display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;}*/
+	
+
