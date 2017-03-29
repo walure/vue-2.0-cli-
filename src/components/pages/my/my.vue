@@ -61,6 +61,7 @@ export default {
   },
   methods: {
    my_data(callback){
+			this.$loading.show();
 			this.$http.get("/api/distributor/get",
 			  {
 				params: {
@@ -73,8 +74,10 @@ export default {
 				}else{
 					callback(res.body.data);
 				}
+				this.$loading.hide();
 			  },function(){
-				this.error_tip='网络不给力，请稍后再试!'
+			  this.$loading.hide();
+				this.$tips('网络不给力，请稍后再试!')
 			});
 		}
   }

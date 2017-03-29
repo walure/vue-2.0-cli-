@@ -9,6 +9,7 @@ import my from '@/components/pages/my/my.vue'
 import subordinateManagement from '@/components/pages/my/subordinate_management/subordinate_management.vue'
 import add_business from '@/components/pages/my/add_business/add_business.vue'
 import distributorInfo from '@/components/pages/my/detail/distributorInfo.vue'
+import edit_distributorInfo from '@/components/pages/my/edit/edit_distributorInfo.vue'
 import setting from '@/components/pages/my/setting/setting.vue'
 import login from '@/components/pages/login/index/login.vue'
 import forget from '@/components/pages/login/forget/forget.vue'
@@ -57,7 +58,12 @@ const routes=[
 		{path:'subordinate_management', name: '下级管理',component:subordinateManagement,
 			children:[
 				{path:'add_business', name: '添加分销商',component:add_business},
-				{path:'distributorInfo', name: '编辑分销商',component:distributorInfo}
+				{path:'distributorInfo', name: '编辑分销商',component:distributorInfo,
+					children:[
+						{path:'edit_distributorInfo', name: '编辑分销商1',component:edit_distributorInfo}
+					]
+				
+				}
 			]
 		},
 		{path:'setting', name: '设置',component:setting},

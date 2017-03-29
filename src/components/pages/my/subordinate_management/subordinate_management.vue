@@ -11,7 +11,7 @@
 			<pageScroll :options="pageData" :queryParms="queryParm"  ></pageScroll>
 
 		</div>
-		<router-view></router-view>
+		<router-view ></router-view>
 	</div>
 
 </template>
@@ -36,20 +36,30 @@ export default {
 			queryParms:{},
 			
 		},
-		queryParm:{}
+		queryParm:{},
     }
   },
   mounted  () {
 	document.getElementById('my_index').style.display='none';
+
+	
   },
   
   watch:{
 	'$route' (to, from) {
 		document.getElementById('my_index').style.display='none';
 		document.getElementById('subordinate_management').style.display='block';
-	}
+		 this.$root.eventHub.$on('eventName',function(target) {
+				this.$refs.keyword.value =null;
+				this.search();
+			 }.bind(this));
+
+	},
   },
   methods: {
+  go_add_business(){
+	//this.$router.replace({path: '/my/subordinate_management'});
+  },
    search(){
 		let distributorName=this.$refs.keyword.value || null;
 		this.queryParm={distributorName:distributorName}

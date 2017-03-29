@@ -1,6 +1,6 @@
 <template>
-	
-				<div class="distributorInfo">
+			<div class="distributorInfo_box">
+				<div class="distributorInfo" id="distributorInfo">
 					<dl class="dl-horizontal ar">
 						<dt>经销商名称</dt><dd>{{distributorName}}</dd>
 						<dt>经销商编码</dt><dd>{{distributorId}}</dd>
@@ -19,10 +19,11 @@
 				
 				<div class="btn_group">
 				   <div class="delete_distributorInfo_btn"> 删除</div>
-				   <div class="edit_distributorInfo_btn"> 编辑</div>
+				   <div class="edit_distributorInfo_btn" @click="edit_distributorInfo"> 编辑</div>
 				</div>
 			</div>
-
+			<router-view ></router-view>
+		</div>
 </template>
 <script>
 import headers from '@/components/pages/header/header.vue';
@@ -41,9 +42,7 @@ export default {
     }
   },
   mounted () {
-		console.log(this.$router)
-	  document.getElementById('my_index').style.display='none';
-  document.getElementById('subordinate_management').style.display='none';
+		this.initStyle();
 		this.my_data(function(data){
 			this.distributorName=data.distributorName;
 			this.distributorId=data.distributorId;
@@ -57,14 +56,16 @@ export default {
   },
   watch:{
 	'$route' (to, from) {
-			document.getElementById('my_index').style.display='none';
-		document.getElementById('subordinate_management').style.display='none';
+		this.initStyle();	
 	}
   },
   methods: {
+	initStyle(){
+		document.getElementById('my_index').style.display='none';
+		document.getElementById('subordinate_management').style.display='none';
+		document.getElementById('distributorInfo').style.display='block';
+	},
    my_data(callback){
-   
-   
 			this.$http.get("/api/distributor/get",
 			  {
 				params: {
@@ -80,7 +81,10 @@ export default {
 			  },function(){
 				this.error_tip='网络不给力，请稍后再试!'
 			});
-		}
+		},
+	edit_distributorInfo(){
+		this.$router.push({ path: '/my/subordinate_management/distributorInfo/edit_distributorInfo' });
+	}
   }
 }
 </script>

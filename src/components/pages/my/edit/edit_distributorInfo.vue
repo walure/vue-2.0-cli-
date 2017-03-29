@@ -1,6 +1,6 @@
 <template>
 
-	<div class="add_business">
+	<div class="eidt_distributorInfo">
 		<dl>
 			<dd><div>经销商名称：</div><div><input ref="distributorName" type="text"></div></dd>
 			<dd><div>所属区域：</div><div><input type="text" value="" ref="distributorArea" name="province" readonly="readonly"></div></dd>
@@ -50,6 +50,7 @@ export default {
 		initStyle(){
 			document.getElementById('my_index').style.display='none';
 			document.getElementById('subordinate_management').style.display='none';
+			document.getElementById('distributorInfo').style.display='none';
 		},
 		submit(){
 			let distributorName=this.$refs.distributorName.value,
@@ -158,22 +159,22 @@ export default {
 }
 </script>
 <style>
-.add_business{    padding-top: 12vw;}
-.add_business dl{margin-bottom: 5vw;background: #fff;padding: 2vw 0 4vw;}
-.add_business dl dd{display: flex;line-height: 9vw; margin-top: 2vw}
-.add_business dl dd div{flex: 1;}
-.add_business dl dd div:nth-child(1){flex: 2;text-align: right;    color: #666;}
-.add_business dl dd div:nth-child(2){flex: 3}
-.add_business dl dd input{border: 1px solid #e3e3e3;height: 8vw;outline: none; padding:0 1vw}
-.add_business dl dd select{border: 1px solid #e3e3e3;height: 8vw;margin-right: 1vw}
-.add_business dl dt{text-align: center;    color: #E54242;}
-.add_business .btn{    line-height: 15vw;
+.eidt_distributorInfo{    padding-top: 12vw;}
+.eidt_distributorInfo dl{margin-bottom: 5vw;background: #fff;padding: 2vw 0 4vw;}
+.eidt_distributorInfo dl dd{display: flex;line-height: 9vw; margin-top: 2vw}
+.eidt_distributorInfo dl dd div{flex: 1;}
+.eidt_distributorInfo dl dd div:nth-child(1){flex: 2;text-align: right;    color: #666;}
+.eidt_distributorInfo dl dd div:nth-child(2){flex: 3}
+.eidt_distributorInfo dl dd input{border: 1px solid #e3e3e3;height: 8vw;outline: none; padding:0 1vw}
+.eidt_distributorInfo dl dd select{border: 1px solid #e3e3e3;height: 8vw;margin-right: 1vw}
+.eidt_distributorInfo dl dt{text-align: center;    color: #E54242;}
+.eidt_distributorInfo .btn{    line-height: 15vw;
     text-align: center;
     background: #669bd8;
     color: #fff;    position: fixed;
     width: 100%;
     bottom: 0;}
-.add_business .btn:active{   background: #6291cb;}
+.eidt_distributorInfo .btn:active{   background: #6291cb;}
 
 
 

@@ -22,8 +22,7 @@ import {cookieSet} from '@/js/cookie.js';
 <script>
 export default {
   name: 'content',
-  props:["options","queryParms"]	
-,
+  props:["options","queryParms"],
   data () {
     return {
 		url:this.options.url ,
