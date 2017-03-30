@@ -8,9 +8,16 @@
 			<span v-if="key.text">
 				<span  v-for="dataItems  in key.text">{{item[dataItems]}}</span>
 			</span>
-			<span v-else>
-			{{item[dataItem]}}
+			<span  v-else-if="key.type === 'price'">
+				{{('￥'+(item[dataItem]/100).toFixed(2))}}
 			</span>	
+			<span v-html="key.format[item[dataItem]]"  v-else-if="key.format">
+				{{key.format[item[dataItem]]}}
+			</span>
+			<span v-else>
+				{{item[dataItem]}}
+			</span>	
+		
 		</td>	 
 	 </tr> 
 	 </tbody>
@@ -38,11 +45,18 @@ export default {
     }
   },
   watch:{
+	'queryParms.nostart'(val){
+		this.isLoad=false;
+		this.search_res=true;
+		this.load({loading:'show'});
+	},
 	queryParms(val){
+		
 		this.queryParm=val
 		this.isLoad=false;
 		this.search_res=true;
 		this.load();
+			
 	},
 	options(val){
 		console.log(val)
@@ -54,9 +68,9 @@ export default {
 	this.pageScroll();
   },
   methods: {
-	load (){
-			if(this.isLoad) return;
-			this.pageList();
+	load (data){
+			if(this.isLoad || this.queryParm.nostart) return;
+			this.pageList(data);
 		},
   	pageScroll () {
 			var w=document.body;
@@ -72,10 +86,19 @@ export default {
 		 data.clickCall ? data.clickCall(data) : '';
 		}
 	},
-	pageList (type) {
-
+	pageList (data) {
+			if(data){
+				if(data.loading){
+					this.$loading.show();
+				}
+			}
 			this.load_txt='数据加载中...';
 			this.listData(function (d) {
+				if(data){
+				if(data.loading){
+					this.$loading.hide();
+				}
+			}
 				this.isLoad=true;
 				if(d.length<this.pageSize){
 					this.scrollFlag=false;

@@ -2,25 +2,25 @@
 
 	<div class="eidt_distributorInfo">
 		<dl>
-			<dd><div>经销商名称：</div><div><input ref="distributorName" type="text"></div></dd>
-			<dd><div>所属区域：</div><div><input type="text" value="" ref="distributorArea" name="province" readonly="readonly"></div></dd>
+			<dd><div>经销商名称：</div><div><input readonly :value="querys.distributorName" ref="distributorName" type="text"></div></dd>
+			<dd><div>所属区域：</div><div><input type="text" :value="querys.area"  value="" ref="distributorArea" name="province" readonly="readonly"></div></dd>
 			<dd><div>起始等级/折扣：</div><div >
 				<select ref="level">
-					<option v-for="(dataItem,index)  in level_data" :value="dataItem.level" >{{dataItem.level}}级/{{dataItem.discount}}折</option>
+					<option  :value="querys.level" >{{querys.level}}级/{{querys.discount/10}}折</option>
 				</select>
 			</div></dd>
 		</dl>
 		<dl>
 			<dt>基本信息</dt>
-			<dd><div>负责人真实姓名：</div><div><input  ref="distributorMgrName" type="text"></div></dd>
-			<dd><div>所属区域：</div><div><input type="text" value=" " ref="distributorMgrArea" name="info_province" readonly="readonly"></div></dd>
-			<dd><div></div><div><input type="text" ref="address"></div></dd>
-			<dd><div>负责人联系电话：</div><div><input ref="distributorMgrPhone" type="text"></div></dd>
+			<dd><div>负责人真实姓名：</div><div><input  :value="querys.distributorMgrName"  ref="distributorMgrName" type="text"></div></dd>
+			<dd><div>所属区域：</div><div><input type="text" :value="querys.province+' '+querys.city+' '+querys.district" ref="distributorMgrArea" name="info_province" readonly="readonly"></div></dd>
+			<dd><div></div><div><input type="text" :value="querys.address1" ref="address"></div></dd>
+			<dd><div>负责人联系电话：</div><div><input :value="querys.distributorMgrPhone"  ref="distributorMgrPhone" type="text"></div></dd>
 		</dl>
 		<dl>
 			<dt>账号配置</dt>
-			<dd><div>登陆账号：</div><div><input ref="username" type="text"></div></dd>
-			<dd><div>初始密码：</div><div><input ref="password" type="password"></div></dd>
+			<dd><div>登陆账号：</div><div><input ref="username" readonly :value="querys.username" type="text"></div></dd>
+			<dd><div>初始密码：</div><div><input ref="password" readonly :value="querys.username" type="password"></div></dd>
 		</dl>
 		<div class="btn" @click="submit">确定</div>
 	</div>
@@ -33,13 +33,14 @@ import addressList from '@/js/ui/addressList.js'
 export default {
   data () {
     return {
-		level_data:[],
+		querys:{}
     }
   },
   mounted () {
-		this.initStyle();
+		this.loadData();
+		
 		this.setCity();
-		this.level();
+		this.initStyle();
   },
   watch:{
 	'$route' (to, from) {
@@ -47,10 +48,13 @@ export default {
 	}
 	},
   methods: {
+		loadData(){
+			this.querys=JSON.parse(this.$route.query.data);
+		},
 		initStyle(){
 			document.getElementById('my_index').style.display='none';
 			document.getElementById('subordinate_management').style.display='none';
-			document.getElementById('distributorInfo').style.display='none';
+			setTimeout(function(){document.getElementById('distributorInfo').style.display='none';},0)
 		},
 		submit(){
 			let distributorName=this.$refs.distributorName.value,
@@ -99,7 +103,7 @@ export default {
 				this.$tips(tip)
 				return;
 			}			
-			this.$http.get("/api/distributor/create",
+			this.$http.get("/api/distributor/update",
 			  {
 				params:{
 					parentId:this.$cookie.get('agtDistributorId'),
@@ -119,7 +123,7 @@ export default {
 				},
 			  }).then(function(res){
 				if(res.body.code=='failure'){
-					
+					this.$tips(res.body.msg|| res.body.errorMsg)
 				}else{
 					this.$root.eventHub.$emit('eventName', '子组件通知父组件改变');
 					this.$router.back();
@@ -138,23 +142,6 @@ export default {
 			
 			});
 		},
-		level(){
-			this.$http.get("/api/distributor/level/list",
-			  {
-				params: {
-				 drpOpenapiLoginId:this.$cookie.get('agtLoginId'),
-				 distributorId:this.$cookie.get('agtDistributorId')
-				},
-			  }).then(function(res){
-				if(res.body.code=='failure'){
-					
-				}else{
-					this.level_data=res.body.data;
-				}
-			  },function(){
-				
-			});
-		}
   }
 }
 </script>

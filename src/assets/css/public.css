@@ -123,6 +123,8 @@ img { border:0px;}
 /*.table th:nth-child(2n){background:#39A036;}*/
 .table td{padding:4vw 2vw;border-bottom:1px solid #eee;text-align:center;}
 .table.weak th{background:none;border-bottom:1px solid #eee;color:#666;font-weight:normal;}
+.table_con .table th{background: #fff;  border-bottom: 1px solid #eee;  color: #666;  font-weight: normal;text-align: center;}
+
 .more{padding:4vw 2vw;text-align:center;color:#999;}
 
 /* dl */

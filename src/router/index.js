@@ -5,6 +5,7 @@ import index from '@/components/pages/index/index.vue'
 import imports from '@/components/pages/imports/imports.vue'
 import importsAdd from '@/components/pages/imports/importsAdd.vue'
 import order from '@/components/pages/order/index/order.vue'
+import orderDetail from '@/components/pages/order/detail/detail.vue'
 import my from '@/components/pages/my/my.vue'
 import subordinateManagement from '@/components/pages/my/subordinate_management/subordinate_management.vue'
 import add_business from '@/components/pages/my/add_business/add_business.vue'
@@ -47,8 +48,11 @@ const routes=[
     },
 	{
       path: '/order',
-      name: '订单',
-      component: order
+      name: '订单管理',
+      component: order,
+	  children:[
+				{path:'detail', name: '添加分销商',component:orderDetail},
+				]
     },
 	{
       path: '/my',
@@ -58,7 +62,7 @@ const routes=[
 		{path:'subordinate_management', name: '下级管理',component:subordinateManagement,
 			children:[
 				{path:'add_business', name: '添加分销商',component:add_business},
-				{path:'distributorInfo', name: '编辑分销商',component:distributorInfo,
+				{path:'distributorInfo', name: '分销商详情',component:distributorInfo,
 					children:[
 						{path:'edit_distributorInfo', name: '编辑分销商1',component:edit_distributorInfo}
 					]

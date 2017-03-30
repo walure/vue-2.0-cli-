@@ -97,7 +97,7 @@ export default {
 			document.getElementById('viewContainer').className=''
 		},
 		setView(to){
-			//console.log(to);
+			console.log(to);
 			if(to.path=='/login' || to.path=='/forget' || to.path=='/setPassword'){
 				this.menu_show['display']='none';
 			}else{
@@ -105,7 +105,7 @@ export default {
 				this.hide();
 				
 			}
-			
+
 			document.title=to.name;
 			this.titles=to.name;
 			if(to.matched.length>1 || to.path=='/importsAdd'){

@@ -18,7 +18,7 @@
 					</dl>
 				
 				<div class="btn_group">
-				   <div class="delete_distributorInfo_btn"> 删除</div>
+				   <div class="delete_distributorInfo_btn" @click="delete_distributorInfo"> 删除</div>
 				   <div class="edit_distributorInfo_btn" @click="edit_distributorInfo"> 编辑</div>
 				</div>
 			</div>
@@ -31,32 +31,38 @@ export default {
   name: 'content',
   data () {
     return {
+			id:this.$route.query.id,
 			distributorName:'',
 			distributorId:'',
 			level_discount:'',
 			area:'',
 			distributorMgrName:'',
 			distributorMgrPhone:'',
+			province:'',
+			city:'',
+			district:'',
+			address1:'',
 			address:'',
-			username:''
+			username:'',
+			level:'',
+			discount:''
     }
   },
   mounted () {
 		this.initStyle();
 		this.my_data(function(data){
-			this.distributorName=data.distributorName;
-			this.distributorId=data.distributorId;
-			this.level_discount=data.level+'级/'+data.discount/10+'折';
-			this.area=data.provinceArea+data.cityArea+data.districtArea;
-			this.distributorMgrName=data.distributorMgrName;
-			this.distributorMgrPhone=data.distributorMgrPhone;
-			this.address=data.province+data.city+data.district+data.address;
-			this.username=data.username;
+			this.draw(data);
 		}.bind(this))
   },
   watch:{
 	'$route' (to, from) {
-		this.initStyle();	
+		this.initStyle();
+		if(to.query.id){
+				this.my_data(function(data){
+				this.draw(data);
+			}.bind(this))
+		}
+		
 	}
   },
   methods: {
@@ -64,6 +70,22 @@ export default {
 		document.getElementById('my_index').style.display='none';
 		document.getElementById('subordinate_management').style.display='none';
 		document.getElementById('distributorInfo').style.display='block';
+	},
+	draw(data){
+			this.distributorName=data.distributorName;
+			this.distributorId=data.distributorId;
+			this.level_discount=data.level+'级/'+data.discount/10+'折';
+			this.level=data.level;
+			this.discount=data.discount;
+			this.area=data.provinceArea+' '+data.cityArea+' '+data.districtArea;
+			this.distributorMgrName=data.distributorMgrName;
+			this.distributorMgrPhone=data.distributorMgrPhone;
+			this.province=data.province;
+			this.city=data.city;
+			this.district=data.district;
+			this.address1=data.address;
+			this.address=data.province+data.city+data.district+data.address;
+			this.username=data.username;
 	},
    my_data(callback){
 			this.$http.get("/api/distributor/get",
@@ -74,17 +96,44 @@ export default {
 				},
 			  }).then(function(res){
 				if(res.body.code=='failure'){
-					this.error_tip=res.body.msg;
+					this.tips(res.body.msg || res.body.errorMsg);
 				}else{
 					callback(res.body.data);
 				}
 			  },function(){
 				this.error_tip='网络不给力，请稍后再试!'
 			});
-		},
+	},
 	edit_distributorInfo(){
-		this.$router.push({ path: '/my/subordinate_management/distributorInfo/edit_distributorInfo' });
-	}
+		this.$router.push({ path: '/my/subordinate_management/distributorInfo/edit_distributorInfo',query:{data:JSON.stringify(this._data)}});
+	},
+	delete_distributorInfo(){
+		this.$confirm({content:'确认删除?',btn:2,okCallback:function(){
+			this.delete_data(function(){
+				this.$root.eventHub.$emit('eventName', '子组件通知父组件改变');
+				this.$router.back();
+			}.bind(this));
+			
+		}.bind(this)});
+	},
+	delete_data(callback){
+			this.$http.get("/api/distributor/del",
+			  {
+				params: {
+				 drpOpenapiLoginId:this.$cookie.get('agtLoginId'),
+				 distributorId:this.$route.query.id
+				},
+			  }).then(function(res){
+				if(res.body.code=='failure'){
+					this.$tips(res.body.msg || res.body.errorMsg);
+				}else{
+					callback(res.body.data);
+				}
+			  },function(){
+				this.$tips('网络不给力，请稍后再试!');
+			});
+	},
+	
   }
 }
 </script>

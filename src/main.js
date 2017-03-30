@@ -7,22 +7,21 @@ import VueResouse from 'vue-resource'
 import VueCookie from 'vue-cookie'
 import loading from '@/components/pages/common/loading.vue'
 import tips from '@/components/pages/common/tips.vue'
+import confirms from '@/components/pages/common/confirm.vue'
 
 Vue.use(VueResouse)
 Vue.use(VueCookie)
 Vue.use(loading)
-Vue.use(tips)
+Vue.use(confirms)
 
 Vue.config.productionTip = false;
 
 
 
 router.beforeEach((to, from, next) => {
-
 	next(); 
-	
-	if(!VueCookie.get('agtLayout') && to.path!='/forget'){
-		next('/login');
+	if((VueCookie.get('agtLayout')==1 && to.path=='/login') ){
+		next('/index');
 	}
 })
 

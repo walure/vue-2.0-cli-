@@ -26,7 +26,6 @@ export default {
 			url:'/api/distributor/subDistributor/list',
 			tbCls:{
 				distributorId:{name:'分销商编码',click:true,clickCall:function(d){
-					console.log(d);
 					this.$router.push({ path: '/my/subordinate_management/distributorInfo',query:{id:d.data.distributorId } });
 				}.bind(this)},
 				distributorName:{name:'分销商名称'},
