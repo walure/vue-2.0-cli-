@@ -94,10 +94,10 @@ export default {
 			this.menu_go_left['menu_go_left1']=false;
 			this.menu_go_left['menu_go_left2']=false;
 			this.bg_shade['display']='none';
-			document.getElementById('viewContainer').className=''
+			if(document.getElementById('viewContainer'))document.getElementById('viewContainer').className=''
 		},
 		setView(to){
-			console.log(to);
+		
 			if(to.path=='/login' || to.path=='/forget' || to.path=='/setPassword'){
 				this.menu_show['display']='none';
 			}else{
@@ -105,14 +105,15 @@ export default {
 				this.hide();
 				
 			}
-
+		
 			document.title=to.name;
 			this.titles=to.name;
-			if(to.matched.length>1 || to.path=='/importsAdd'){
+			if(to.matched.length>1){
 				this.back_shade['display']='block';
 			}else{
 				this.back_shade['display']='none';
 			}
+			
 		}
     }
   },

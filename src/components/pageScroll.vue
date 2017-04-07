@@ -45,17 +45,15 @@ export default {
     }
   },
   watch:{
-	'queryParms.nostart'(val){
-		this.isLoad=false;
-		this.search_res=true;
-		this.load({loading:'show'});
-	},
 	queryParms(val){
-		
 		this.queryParm=val
 		this.isLoad=false;
 		this.search_res=true;
-		this.load();
+		let data='';
+		if(this.queryParms.loading){
+			data={loading:'show'}
+		}
+		this.load(data);
 			
 	},
 	options(val){
@@ -64,12 +62,16 @@ export default {
 	
   },
   mounted  () {
-	this.load();
+  let data='';
+	if(this.queryParms.loading){
+		data={loading:'show'}
+	}
+	this.load(data);
 	this.pageScroll();
   },
   methods: {
 	load (data){
-			if(this.isLoad || this.queryParm.nostart) return;
+			if(this.isLoad || this.queryParm.noload) return;
 			this.pageList(data);
 		},
   	pageScroll () {
@@ -128,6 +130,7 @@ export default {
 			var logUrl = this.url;
 			var parm={
 				distributorId:this.$cookie.get('agtDistributorId'),
+				 drpOpenapiLoginId:this.$cookie.get('agtLoginId'),
 				page:this.page,
 				pageSize:this.pageSize,
 			};

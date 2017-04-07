@@ -35,7 +35,7 @@ export default {
 			queryParms:{},
 			
 		},
-		queryParm:{},
+		queryParm:{loading:true},
     }
   },
   mounted  () {

@@ -28,6 +28,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+
 		  '/api': {
 				target: 'http://dev-drpapi.525happy.cn/',
 				changeOrigin: true,

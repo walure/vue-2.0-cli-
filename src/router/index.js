@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import App from '@/App.vue'
 import index from '@/components/pages/index/index.vue'
-import imports from '@/components/pages/imports/imports.vue'
-import importsAdd from '@/components/pages/imports/importsAdd.vue'
+import imports from '@/components/pages/imports/index/imports.vue'
+import importsDetail from '@/components/pages/imports/detail/detail.vue'
+import importsAdd from '@/components/pages/imports/add/importsAdd.vue'
 import order from '@/components/pages/order/index/order.vue'
 import orderDetail from '@/components/pages/order/detail/detail.vue'
 import my from '@/components/pages/my/my.vue'
@@ -35,9 +36,9 @@ const routes=[
       component: imports,
 	  children:[
 				{
-				  path: 'add',
-				  name: '添加进货单',
-				  component: importsAdd,
+				  path: 'detail',
+				  name: '进货单详情',
+				  component: importsDetail,
 				},
 	 ]
     },	
@@ -51,7 +52,7 @@ const routes=[
       name: '订单管理',
       component: order,
 	  children:[
-				{path:'detail', name: '添加分销商',component:orderDetail},
+				{path:'detail', name: '订单详情',component:orderDetail},
 				]
     },
 	{
@@ -99,5 +100,6 @@ const routes=[
 export default new Router({
  //mode: 'history',
   routes: routes,
-  linkActiveClass:'curr'
+  linkActiveClass:'curr',
+  saveScrollPosition:true
 })

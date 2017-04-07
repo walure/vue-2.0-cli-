@@ -23,6 +23,7 @@ window.loading.install = function (Vue, options) {
 			 document.body.appendChild(tpl);     
 		},
 		hide(){
+		if(document.getElementsByClassName('js_loading').length>0)
 		 document.body.removeChild(tpl);
 		}
   }

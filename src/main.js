@@ -22,6 +22,9 @@ router.beforeEach((to, from, next) => {
 	next(); 
 	if((VueCookie.get('agtLayout')==1 && to.path=='/login') ){
 		next('/index');
+	}else if(!VueCookie.get('agtLayout')){
+		next('/login');
+		
 	}
 })
 

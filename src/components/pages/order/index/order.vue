@@ -2,7 +2,7 @@
 		
 			<div id="viewContainer">
 				<div class="view">
-				<div class="order  ">
+				<div class="order" id="order">
 					<div class="select_box flex ">
 						<span @click="select_table(0)" :class="curr[0]">已审核</span>
 						<span @click="select_table(1)" :class="curr[1]">待审核</span>
@@ -19,6 +19,8 @@
 					</div>
 					
 				</div>
+				
+				<router-view ></router-view>
 		</div>
 </div>
 
@@ -36,7 +38,7 @@ export default {
 			tbCls:{
 				orderNo:{name:'进货单编号',click:true,clickCall:function(d){
 					console.log(d);
-					this.$router.push({ path: '/order/detail',query:{id:d.data.distributorId } });
+					this.$router.push({ path: '/order/detail',query:{orderId:d.data.orderId } });
 				}.bind(this)},
 				orderPrice:{name:'应付金额',type:'price'},
 				shipStatus:{name:'进货单状态',className:'imports_status check_box',format:{5:'<i class="green">已审核</i>',1:'<i class="red">审核中</i>',2:'已取消',10:'<i class="red">审核不通过</i>'}}
@@ -45,17 +47,26 @@ export default {
 			queryParms:{},
 			
 		},
-		queryParm1:{drpOpenapiLoginId:this.$cookie.get('agtLoginId'),auditStatus:1},
-		queryParm2:{drpOpenapiLoginId:this.$cookie.get('agtLoginId'),auditStatus:0,nostart:true},
-		queryParm3:{drpOpenapiLoginId:this.$cookie.get('agtLoginId'),auditStatus:2,nostart:true},
+		queryParm1:{drpOpenapiLoginId:this.$cookie.get('agtLoginId'),auditStatus:1,loading:true},
+		queryParm2:{noload:true},
+		queryParm3:{noload:true},
 		curr:['curr'],
 		show:['','display:none','display:none']
 		
     }
   },
   mounted () {
+	
+  },
+  watch:{
+	'$route' (to, from) {
+		this.initStyle();
+	}
   },
   methods: {
+	initStyle(){
+		document.getElementById('order').style.display='block';
+	},
    select_table(type){
 	this.curr=[];
 	this.curr[type]='curr';
@@ -63,11 +74,11 @@ export default {
 		this.show[i]='display:none';
 	}
 	this.show[type]='';
-	if(type==1){
-		this.queryParm2.nostart=false;
+	if(type==1 && this.queryParm2.noload){
+		this.queryParm2={drpOpenapiLoginId:this.$cookie.get('agtLoginId'),auditStatus:0,noload:false,loading:true};
 	}
-	if(type==2){
-		this.queryParm3.nostart=false;
+	if(type==2 && this.queryParm3.noload){
+		this.queryParm3={drpOpenapiLoginId:this.$cookie.get('agtLoginId'),auditStatus:2,noload:false,loading:true};
 	}
    
    }

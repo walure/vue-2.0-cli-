@@ -25,7 +25,9 @@ export default {
 		document.getElementById('my_index').style.display='none';
 	},
 	exit(){
+		
 		this.$confirm({content:'确认退出?',btn:2,okCallback:function(){
+			this.$loading.show();
 			this.$cookie.delete('agtDiscount');
 			this.$cookie.delete('agtDistributorId');
 			this.$cookie.delete('agtDistributorName');
@@ -35,6 +37,7 @@ export default {
 			this.$cookie.delete('agtLoginId');
 			this.$cookie.delete('agtLayout');
 			this.$router.push({path:'/login'});
+			this.$loading.hide();
 		}.bind(this)});
 	}
   }

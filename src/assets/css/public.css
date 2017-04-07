@@ -119,7 +119,7 @@ img { border:0px;}
 
 /* table */
 .table{width:100%;border-collapse: collapse;border-spacing: 0;}
-.table th{color:#fff;background:#0ABA7A;padding:3vw 2vw;}
+.table th{color:#fff;background:#0ABA7A;padding:3vw 2vw;text-align: center;}
 /*.table th:nth-child(2n){background:#39A036;}*/
 .table td{padding:4vw 2vw;border-bottom:1px solid #eee;text-align:center;}
 .table.weak th{background:none;border-bottom:1px solid #eee;color:#666;font-weight:normal;}

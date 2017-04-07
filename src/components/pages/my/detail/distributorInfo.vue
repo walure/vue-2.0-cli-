@@ -88,6 +88,7 @@ export default {
 			this.username=data.username;
 	},
    my_data(callback){
+			this.$loading.show();
 			this.$http.get("/api/distributor/get",
 			  {
 				params: {
@@ -100,7 +101,9 @@ export default {
 				}else{
 					callback(res.body.data);
 				}
+				this.$loading.hide();
 			  },function(){
+				this.$loading.hide();
 				this.error_tip='网络不给力，请稍后再试!'
 			});
 	},
